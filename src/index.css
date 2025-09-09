@@ -27,6 +27,10 @@
     --civic-yellow-light: 45 96% 95%;
     --civic-yellow-foreground: 217 33% 17%;
 
+    --civic-purple: 262 83% 58%;
+    --civic-purple-light: 262 83% 95%;
+    --civic-purple-foreground: 0 0% 98%;
+
     /* UI System Colors */
     --card: 0 0% 100%;
     --card-foreground: 217 33% 17%;
@@ -60,7 +64,9 @@
     --gradient-success: linear-gradient(135deg, hsl(var(--civic-green)), hsl(142 76% 42%));
     --gradient-warning: linear-gradient(135deg, hsl(var(--civic-orange)), hsl(21 95% 58%));
     --gradient-pending: linear-gradient(135deg, hsl(var(--civic-yellow)), hsl(45 96% 60%));
+    --gradient-purple: linear-gradient(135deg, hsl(var(--civic-purple)), hsl(262 83% 65%));
     --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(220 13% 95%));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--civic-blue)) 0%, hsl(var(--civic-purple)) 100%);
 
     /* Shadows */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -180,8 +186,12 @@
     background: var(--gradient-pending);
   }
   
-  .bg-gradient-subtle {
-    background: var(--gradient-subtle);
+  .bg-gradient-purple {
+    background: var(--gradient-purple);
+  }
+  
+  .bg-gradient-hero {
+    background: var(--gradient-hero);
   }
 
   /* Interactive Elements */
