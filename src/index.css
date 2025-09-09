@@ -2,41 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Civic Engagement Platform Design System - Modern Social Media Style */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core Brand Colors */
+    --background: 0 0% 98%;
+    --foreground: 217 33% 17%;
 
+    /* Civic Action Colors */
+    --civic-blue: 221 83% 53%;
+    --civic-blue-light: 221 83% 95%;
+    --civic-blue-foreground: 0 0% 98%;
+
+    --civic-green: 142 76% 36%;
+    --civic-green-light: 142 76% 95%;
+    --civic-green-foreground: 0 0% 98%;
+
+    --civic-orange: 21 95% 52%;
+    --civic-orange-light: 21 95% 95%;
+    --civic-orange-foreground: 0 0% 98%;
+
+    --civic-yellow: 45 96% 53%;
+    --civic-yellow-light: 45 96% 95%;
+    --civic-yellow-foreground: 217 33% 17%;
+
+    /* UI System Colors */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 217 33% 17%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 217 33% 17%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 220 13% 96%;
+    --secondary-foreground: 217 33% 17%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 13% 96%;
+    --muted-foreground: 217 19% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 220 13% 96%;
+    --accent-foreground: 217 33% 17%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 221 83% 53%;
 
-    --radius: 0.5rem;
+    --radius: 12px;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--civic-blue)), hsl(var(--civic-blue)) 50%, hsl(221 83% 60%));
+    --gradient-success: linear-gradient(135deg, hsl(var(--civic-green)), hsl(142 76% 42%));
+    --gradient-warning: linear-gradient(135deg, hsl(var(--civic-orange)), hsl(21 95% 58%));
+    --gradient-pending: linear-gradient(135deg, hsl(var(--civic-yellow)), hsl(45 96% 60%));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(220 13% 95%));
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-floating: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-civic: 0 4px 14px 0 hsl(var(--civic-blue) / 0.25);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -91,7 +125,6 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
-  }
 }
 
 @layer base {
@@ -101,5 +134,67 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  }
+}
+
+@layer components {
+  /* Status Badges */
+  .status-pending {
+    @apply bg-civic-yellow-light text-civic-yellow-foreground border border-civic-yellow/20;
+  }
+  
+  .status-progress {
+    @apply bg-civic-orange-light text-civic-orange-foreground border border-civic-orange/20;
+  }
+  
+  .status-resolved {
+    @apply bg-civic-green-light text-civic-green-foreground border border-civic-green/20;
+  }
+
+  /* Card Styles */
+  .civic-card {
+    @apply bg-card rounded-2xl shadow-card border border-border/50 transition-all duration-300 hover:shadow-floating;
+  }
+
+  /* Gradient Backgrounds */
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .bg-gradient-success {
+    background: var(--gradient-success);
+  }
+  
+  .bg-gradient-warning {
+    background: var(--gradient-warning);
+  }
+  
+  .bg-gradient-pending {
+    background: var(--gradient-pending);
+  }
+  
+  .bg-gradient-subtle {
+    background: var(--gradient-subtle);
+  }
+
+  /* Interactive Elements */
+  .civic-interactive {
+    @apply transition-all duration-200 active:scale-95;
+  }
+
+  .civic-float {
+    @apply shadow-floating hover:shadow-civic transition-all duration-300;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
+  }
+  
+  .backdrop-blur-civic {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
 }
