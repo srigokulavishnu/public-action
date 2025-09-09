@@ -16,22 +16,37 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null); // null = loading
 
   // Simple auth check - in real app this would check tokens/session
   useEffect(() => {
     const checkAuth = () => {
-      // For demo purposes, show login first, then auto-redirect to feed
-      const hasSeenLogin = localStorage.getItem('hasSeenLogin');
-      if (!hasSeenLogin) {
+      try {
+        // For demo purposes, show login first, then auto-redirect to feed
+        const hasSeenLogin = localStorage.getItem('hasSeenLogin');
+        setIsAuthenticated(!!hasSeenLogin);
+      } catch (error) {
+        console.error('Auth check error:', error);
         setIsAuthenticated(false);
-      } else {
-        setIsAuthenticated(true);
       }
     };
     
     checkAuth();
   }, []);
+
+  // Show loading state while checking auth
+  if (isAuthenticated === null) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-4 animate-pulse">
+            <div className="w-8 h-8 bg-white rounded-lg"></div>
+          </div>
+          <p className="text-muted-foreground">Loading CivicConnect...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <QueryClientProvider client={queryClient}>
